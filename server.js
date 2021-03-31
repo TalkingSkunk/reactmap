@@ -17,7 +17,9 @@ const io = require("socket.io")(server, {
 const PORT = process.env.PORT || 8080
 
 
-
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+ }
 
 
 // for parsing incoming POST data
