@@ -14,7 +14,7 @@ const socket = openSocket('http://localhost:8080');
 
 socket.on("connect_error", (err) => {
     console.log(`connect_error due to ${err.message}`);
-  });
+});
 
 socket.emit('lol', 'haha')
 
@@ -58,7 +58,7 @@ const Map = () => {
             })
             console.log('after socket')
             new mapboxgl.Marker({
-                color: "#FFFFFF",
+                color: "#000066",
                 draggable: false,
                 }).setLngLat(userCoordinates)
                 .addTo(map)

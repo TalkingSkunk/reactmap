@@ -3,19 +3,19 @@
 const path = require('path')
 const express = require('express')
 const app = express()
-const http = require('http')
-const server = http.createServer(app)
 var cors = require('cors')
 // app.use(cors())
 
-const io = require('socket.io')(server)
+const server = require("http").createServer();
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
 
 
 const PORT = process.env.PORT || 8080
 
-app.get('/', (req,res)=>{
-   res.send ('<h1>Go to either /medical or /dispatcher</h1>')
-})
 
 
 
@@ -23,17 +23,6 @@ app.get('/', (req,res)=>{
 // for parsing incoming POST data
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-
-const STATIC_PATH = path.join('client','build')
-app.use(express.static( STATIC_PATH ))
-
-
-
-
-
-app.get('*', (req, res) => {
-   res.sendFile(path.join(__dirname, './client/build/index.html'))
-})
 
 
 
